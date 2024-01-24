@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de Texto</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/sf-mono?styles=36550');
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f8f8f8;
+    }
+
+    #editor {
+      width: 100%;
+      max-width: 80%;
+      height: 80%;
+      background-color: #fff;
+      border: none;
+      padding: 20px;
+      font-size: 16px;
+      resize: none;
+    }
+
+    textarea {
+      font-weight: lighter;
+      font-family: 'SF Mono', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+      text-align: left;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #111;
+        color: #fff;
+      }
+
+      #editor {
+        background-color: #222;
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="editor" spellcheck="false"></textarea>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const editor = document.getElementById('editor');
+
+      editor.addEventListener('paste', function (e) {
+        e.preventDefault();
+        const text = e.clipboardData.getData('text/plain');
+        document.execCommand('insertText', false, text);
+      });
+    });
+    var textarea = document.getElementById('editor');
+    textarea.focus();
+  </script>
+</body>
+</html>
